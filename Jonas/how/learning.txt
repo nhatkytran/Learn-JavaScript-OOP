@@ -1,0 +1,70 @@
++++ JavaScript +++
+
+--> JavaScript is a high-level, object-oriented, multi-paradigm programming language
+
+--> A multi-paradigm programming language is a language that supports multiple programming \
+paradigms or styles. Programming paradigms refer to the different approaches to writing \
+software programs
+--> For example, some programming paradigms are:
+
++ Procedural: focuses on writing a sequence of procedures or functions that perform specific tasks
++ Object-oriented: focuses on creating and manipulating objects that contain data and behavior
++ Functional: focuses on writing functions that take inputs and produce outputs without modifying \
+any data outside the function
++ Declarative: focuses on specifying what the program should do, rather than how to do it
+
+--> A multi-paradigm programming language combines two or more of these programming paradigms, often \
+allowing developers to choose the most appropriate approach for a specific task or problem
+--> JavaScript is an example of a multi-paradigm programming language. It supports object-oriented \
+programming, functional programming, and even some declarative paradigms, among others. This flexibility \
+and versatility make it a popular choice for a wide range of web development and software engineering applications
+
+--> In summary, we can say that JavaScript is multi-paradigm programming language: OOP, Functional, Declarative
+
+--> Declarative v/s Imperative? Such as Fetching API
+
+--> More about Functional Programming
+--> Programming paradigm
++ Funtions are first-class citizens --> passed as arguments, can be returned from function, stored in variable
++ Pure function --> Don't mutate data, same input same output
++ Emphasizes declarative programming
+
+--> Every thing in JS is an object --> Prototype-based Object-Oriented Programming --> Object Constructor and its prototype
+
+--> Primitive Types --> There are 6 Primitive Types --> undefined, null, number, string, boolean, symbol
+--> Actually called "Primitive" because they are not object and do not have any properties or methods
+--> Why 'string'.toLowerCase()?
+--> We can use properties and methods with Primitive values because JavaScript provides object wrappers for each \
+Primitive types (Number, String, Boolean)
+--> 123.__proto__ --> SyntaxError
+--> Number(123).__proto__
+--> Passed by value --> when a value is assigned to a variable, a copy of the value is created, instead of just a reference \
+to the original value
+
+--> Perference Types --> Object (Regular Object), Array, Function,...
+--> Pass by reference
+
++++ 10 characteristics of JavaScript +++
+
+--> Henry Goes Into the Market Just Preparing his New First Dish Salad
+
++ High Level
++ Garbage Collected
++ Interpreted
++ Multi-paradigm
+
++ Just-in-time Compiled
+- JavaScript is indeed Just-In-Time (JIT) compiled. This means that the JavaScript code is not compiled ahead of time, \
+but rather compiled just before it is executed. The JavaScript engine takes the source code and converts it into machine code, \
+which can then be run by the CPU. JIT compilation has the advantage of allowing for faster code execution because it can optimize \
+the machine code based on the specific runtime environment and current execution context.
+
++ Prototype-based Object-Oriented
++ Non-blocking Event Loop Concurrency Model
+
++ First-class Funciton
+- Functions are treated like any other variable
+- A function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable.
+
++ Dynamic
++ Single-threaded --> JS is single-threaded itself, but its environment is not --> Web APIs environment

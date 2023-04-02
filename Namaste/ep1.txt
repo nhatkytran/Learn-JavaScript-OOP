@@ -1,0 +1,14 @@
++++ How JS works and Execution Context +++
+
+--> Everything in JS happens insinde an Execution Context
+
+--> Execution Context has 2 components
++ Code Component --> Thread of Execution --> Executes the code
++ Memory Component --> Variable Environment --> Managing memory
+
+--> Memory Component stores data as key-value pair
++ Primitive types --> Stored dicrectly
++ Reference types --> Stored in Heap and is pointed in Memory Component
+
+--> JavaScript --> Synchronous and Single-threaded language
+--> JavaScript executes one thing at a time and in a specific order

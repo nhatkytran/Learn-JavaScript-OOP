@@ -49,9 +49,24 @@ to the original value
 --> Henry Goes Into the Market Just Preparing his New First Dish Salad
 
 + High Level
+- Any program needs resources such as memory
+- C (Low-Level) --> Developer has to manage resources manually
+- JS, Python (High-Level) --> Everything happens automatically --> Abstraction
+
 + Garbage Collected
+- An algorithm in JS engine --> Clean the memory
+
 + Interpreted
-+ Multi-paradigm
+- Run code line by line and convert code to machine code
+
+--> When JS deal with a big For Loop, the counter exceeds a certain threshold, the engine determines that the loop \
+is a "hot loop" and would benefit from Just-In-Time compilation
+
++ Multi-paradigm --> Paradigm --> An approach and mindset of structuring code, which will direct coding style and technique
+- Procedural Programming --> Organizing the code in a very linear way, and then with some funcitons in between
+- Object-Oriented Programming -->
+- Functional Programming -->
+--> We can classify paradigm as Imperative or as Declarative
 
 + Just-in-time Compiled
 - JavaScript is indeed Just-In-Time (JIT) compiled. This means that the JavaScript code is not compiled ahead of time, \
@@ -60,11 +75,31 @@ which can then be run by the CPU. JIT compilation has the advantage of allowing 
 the machine code based on the specific runtime environment and current execution context.
 
 + Prototype-based Object-Oriented
-+ Non-blocking Event Loop Concurrency Model
+- Every thing in JS is an object except for Primitive values
+--> Why we can create an array and use push method on it --> It's because of Prototypal Inheritance
 
 + First-class Funciton
 - Functions are treated like any other variable
 - A function can be passed as an argument to other functions, can be returned by another function and can be assigned as a value to a variable.
 
-+ Dynamic
++ Dynamic --> Dynamically-typed
+- No data type definitions. Types becomes known at runtime
+- Data type of variable is automatically changed
+
 + Single-threaded --> JS is single-threaded itself, but its environment is not --> Web APIs environment
+- Concurrency model --> how the JS engine handles multiple tasks happening at the same time
+--> Why do we need Concurrency model? --> JS runs in one single threaded, so it can only do one thing at a time
+- A thread is like a set of instructions that is executed in the computer's CPU
+--> What about a long-running task? --> Block the single thread --> Need non-blocking behavior
+
++ Non-blocking Event Loop Concurrency Model
+- Event Loop: takes long running tasks, executes them in the "background", and puts them back in the main thread \
+once they are finished
+
+
++++ What is a JavaScript Engine? +++
+
+--> JS Engine --> Program that executes JS code
+--> JS Engine --> Call Stack + Heap
++ Call Stack --> Execution Context --> Where code is executed
++ Heap --> Where objects are stored - Object in memory

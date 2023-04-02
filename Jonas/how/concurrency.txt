@@ -1,0 +1,212 @@
++++ Concurrency +++
+
+--> Concurrency is a concept
+--> how a program or algorithm is structured, not how it is executed
+--> there are different ways of executing concurrent code
+
+--> An algorithm is concurrent when it is structured into several sub parts \
+that can be executed out of order (or partially ordered), without affecting the outcome
+
+--> code sections are not necessarily executed in a specific order
+--> the final result remains the same
+
+--> fragment
+avg = (sum1 + sum2 + sum3) / (count1 + count2 + count3)
+
+--> no matter the order of execution of the concurrent fragments, the final result is the same
+
++++ How are concurrent fragments executed? +++
+
+--> Parallel execution
+                        ----------- time -------------->
++ CPU 1 --> fragment 1  ------------------------------->
++ CPU 2 --> fragment 2  ------------------------------->
++ CPU 3 --> fragment 3  ------------------------------->
+
++ requires multiple CPUs (or cores)
++ code executor must be able to take advantage of multiple CPUs/cores
+
+--> Time-sliced Execution (also called interleaving)
+                        ----------- time -------------->
++ CPU 1 --> fragment 1  ------>               --------->
++ CPU 1 --> fragment 2         ------>
++ CPU 1 --> fragment 3                ------->
+
++ only a single CPU/Core is needed
++ every time execution is paused, state must be saved somewhere
++ every time execution is resumed, saved state must be loaded
+--> context switching --> each context has a performance cost
+
++++ Processes +++
+
+--> Think of a process as an application instance executing in your OS (Excel, Web Browser, Python App,...)
+--> Processes run Concurrently
++ May run in parallel on machine with multiple CPUs/cores
++ Or using interleaving/time-slicing (even on multi CPU/core machine)
+--> Each process runs independently
+--> Memory is not shared between processes (as well as some other resources)
+--> possible states
++ running --> have access to CPU and is currently executing code
++ ready --> could run, if it had access to a CPU
++ blocked --> waiting for something to happen (I/O operations, such as receiving data from a web API)
+
++++ Threads +++
+
+--> Each process is executed using one or more threads (in modern operating systems)
+--> always starts with at least one thread, often called the main thread
+--> as well as "global" data (shared state)
+--> concurrent code can be executed using mutiple threads
++ multithreaded process
++ otherwise called a single-threaded process
+--> threads have access to shared resources in the process (global data, open files,...)
+--> but threads can also have their own "private" resources (local variables)
+--> sometimes called thread-local data
+
+--> may run in parallel on machine with multiple CPUs/cores
+--> and/or using time-slicing/interleaving (even on multi-CPU/core machine)
+
++++ Scheduling +++
+
+--> OS has a piece of software called scheduler
+
+--> Scheduler decides when to run threads
+--> Multiple running processes results in multiple threads, even if each process is single-threaded
+
+--> The scheduler runs, pauses and restarts threads all the time
+--> The scheduler decides when to do that, not us as the application developer
+
+--> When a thread is paused, it's current state must be saved (in memory)
+--> When a thread is resumed, it's original saved state must be restored
+--> This is called Context switching, and has a performance penalty
+
+--> When a scheduler pauses a thread and runs another thread we say that the scheduler preempts the thread
+--> hence the term preemptive multitasking
+
++++ Multitasking +++
+
+--> General term used to denote that multiple "things" are running concurrently
++ could be multiple processes (Excel, Python, Browser,...)
++ could be multiple threads
++ or any other way if running code fragments concurrently
+
+--> Multitasking is a concept, running concurrent code and can be achieved in variety of ways
++ Parallel execution
++ Time-sliced execution (Interleaving)
+
++++ The Python Global Interpreter Lock +++
+
+--> The Python Global Interpreter Lock is also called the GIL for short
+--> The way CPython is written, only allows for interleaved/time-sliced running of multiple threads
+--> Even when we create multiple threads, only one thread is allowed to run at a time
++ No parallelism
++ Does not take advantage of multiple CPUs/cores
+--> Makes writinng the CPython interpreter easier
+--> Actually speeds up single-threaded processes --> which is how most Python apps are written
+--> There have been attemps to remove the GIL (gilectomy!), but none have been successfully accepted yet \
+--> Often causes significant slowdowns in existing single-threaded Python apps
+
++++ Another approach to Multitasking +++
+
+--> We saw that the scheduler implements preemptive multitasking
+--> We don't really have much say over when one thread is stopped and another started
+--> This can be difficult when using shared resources - a lot of care has to be taken to ensure things run \
+as expected even if the task is interupted preemptively
+
+--> Another approach is to write code where we explicitly say when (or where) a task can be interrupted \
+to allow another tasks to run concurrently
+--> Cooperative multitasking
+--> This can be really useful in cases where a code fragment is waiting on an external resource to complete \
+and return something
+--> Waiting for some I/O operation to complete
++ Waiting for database response
++ Waiting for a file to be opened and read by OS
++ Waiting for response from web API
++ Waiting for another process to return something
+
++++ Workloads +++
+
+--> Characterize the type of work done by a chunk of code
+--> What kind of work is the process dealing with the majority of the time?
+
+--> Spends a lot of time running computations
+--> would benefit from a more powerful CPU/core --> CPU workload
+
+--> Spends a lot of time waiting for I/O to complete
+--> would not benefit from a more powerful CPU/core --> I/O workload
+
+--> Most workloads are mixed
+--> but have a dominant bottleneck, CPU or I/O (CPU bound or I/O bound)
+
++++ CPU bound workloads in Python - Multithreading +++
+
+--> Assuming the workload can be wriiten into concurrent fragments
+--> Running fragments using multiple threads would seem like a good solution to increase performance
+--> But, the GIL
++ Threads will run interleaved
++ Not in parallel across multiple CPUs/cores
+--> So, no parallel execution
++ And we have the additional cost of context switches
++ Generally means our code will actually run slower than single threaded
+
++++ CPU bound workloads in Python - Multiprocessing +++
+
+--> One way to spread CPU bound loads across mulitple CPUs/cores is to start multiple parallel processes
+--> Python calls this multiprocessing
+--> process state is not shared - they are independent
+--> means communicating between main app and other processes is more difficult/costly than with threading
+
+--> Main application can spawn multiple processes
+--> data marshalling v/s data unmarshalling
+--> can pass data t a spawned process
+--> can get results back from a process
+--> not scalable
+
+--> In modern computing, and with ever larger data sets, scaling limited to a single machine is often not sufficient
+--> really is that although you can use multiprocessing to take full advantage of a single machine
+--> if you need that level of performance, your will likely need to write more complex code to scale accross multiple machines
+--> which may mean you don't even need multiprocessing
+
++++ I/O bound workloads in Python - Threading +++
+
+--> CPython is inherently single-threaded
+--> But since most of the time is spent waiting for an I/O operation to return something
+--> Running code concurrently makes sense, even if single-threaded
+--> Switching to another thread while one is waiting for I/O means other code fragments can be executing code \
+that they would otherwise have been blocked from running until the I/O operation completed
+
++++ Multithreading dangers +++
+
+--> Multithreading concurrent I/O bound fragments should improve performance
+--> Writing multithreaded code is difficult
+--> Preemptive - we don't know exactly when a thread will be interrupted
+--> Have to be careful with shared state - easy to run into problems --> easy to make mistakes --> difficult to debug
+
++++ Cooperative Multitasking +++
+
+--> Writing multithreaded code can be difficult
+--> Multithreading in CPython does not help with CPU bound workloads
+--> but can help with I/O bound workloads
+
+--> Is there a simpler/safer alternative for writing concurrent code for I/O bound workloads?
+--> Asynchronous programming --> uses async io module and special keywords: async, await, yield
+--> It is a form of Cooperative multitasking
++ In our code we specify exactly where a task can be paused, and another one allowed to run
++ Still single-threaded execution
++ Can significantly improve performance for I/O bound workloads
+
++++ Python Async Programmings +++
+
+--> Offers an easier/safer alternative way to Multithreading
+--> Both aysnc and multithreading are inherently single-threaded (GIL)
+--> Performance improvements for I/O bound workloads priamrily
+--> Safer than preemptive multitasking, but adds some complexity to our code
+
+--> Need to write concurrentc code (just like with threading or multiprocessing)
+--> But, unlike threading, we have to explicitly let Python know how the different fragments can interrupt \
+each other and work together
++ This adds a little bit of complexity to our code - blocking and non-blocking code
++ Generally simpler overall than multithreading
++ Easier to debug
++ But does require 3rd party I/O libraries to be async enabled
+
++++ The Asyncio Event Loop +++

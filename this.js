@@ -125,3 +125,15 @@ console.log(Student.prototype); // { method1, a, b }
 
 s2.a(); // this --> s2 { method2 }
 s2.b(); // Window
+
+// Static methods are not stored in prototype
+
+class Person {
+  static study() {
+    console.log(this); // Person
+    console.log('Learn Computer Science');
+  }
+}
+
+console.dir(Person);
+Person.study();

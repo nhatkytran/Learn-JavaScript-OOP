@@ -103,3 +103,40 @@ once they are finished
 --> JS Engine --> Call Stack + Heap
 + Call Stack --> Execution Context --> Where code is executed
 + Heap --> Where objects are stored - Object in memory
+
++++ Computer Science Sidenote: Compilation v/s Interpretation +++
+
+--> Compilation --> Entire code is converted into machine code at once, and written \
+to a binary file that can be executed by a computer
+
+--> Source code
++ Step 1: Compilation
+--> Portable file: Machine code
++ Step 2: Execution --> Can happend way after compilation
+--> Program running
+
+--> Portable file are designed to be platform-independent, which means they can be \
+opened and viewed on different operating systems or devices without requiring any \
+specific software or program
+
+--> Interpretation --> Interpreter runs through the source code and executes it \
+line by line
+
+--> Source code
++ Step 1: Execution line by line --> Code still needs to be converted to machine code
+--> Program running
+
+--> Just-in-time (JIT) compilation: Entire code is converted into machine code \
+at once, the executed immediately
+
+--> Source code
++ Step 1: Compilation
+-->Machine code --> Not Portable file
++ Step 2: Execution --> Happens immediately
+--> Program running
+
+*** Point to note
+--> Compile --> Convert --> Bien dich
+--> Interpret --> Translate --> Phien dich
+
++++ The bigger picture: JavaScript Runtime +++

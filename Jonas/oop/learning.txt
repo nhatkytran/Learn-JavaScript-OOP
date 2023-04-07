@@ -105,3 +105,10 @@ Function.prototype.__proto__ --> Object.prototype
 --> Every funtion has prototype, every object has __proto__
 
 +++ Prototypal Inheritance on Built-in Objects +++
+
+--> HTMLElement --> Element --> Node
+
+Elements are a type of Node, but not all Nodes are Elements
+In summary, Nodes refer to any object that can appear in a DOM tree, while Elements \
+specifically refer to the type of Node representing an HTML or XML element
+An example of a Node in the DOM tree that is not an HTML or XML Element would be a Text node

@@ -1,0 +1,107 @@
++++ What is OOP - Object-Oriented Programming? +++
+
+--> OOP --> Abstraction, Encapsulation, Inheritence, Polymorphism
+
+--> OOP --> A programming paradigm based on the concept of objects (data + behavior)
+--> In OOP --> Objects are self-contained pieces/blocks of code --> Encapsulation
+--> Interact with the code outside using Public Interface (API) so called public \
+methods --> Abstraction
+
+--> In summary, the goal of OOP is organizing code, to make code more flexible and \
+easier to maintain
+
+--> Question about Polymorphism with ChatGPT
+As I understand that now I have a class Student with calcAge function, \
+then I create class CodingStudent extends Student and CodingStudent has new \
+calcAge function, that is polymorphism, right?
+
+Yes, that is an example of polymorphism in JavaScript.
+In this scenario, you have created a class `Student` with a method `calcAge()` on its prototype. You then created a subclass `CodingStudent` that extends `Student`, and you have overridden the `calcAge()` method in the subclass to provide a new implementation.
+Now, if you create an instance of `CodingStudent` and call the `calcAge()` method on that instance, you will get the implementation provided by the `CodingStudent` subclass, rather than the implementation provided by the `Student` superclass. This is an example of polymorphism in action - different objects of different types can provide different implementations of the same method or interface, allowing for more dynamic and flexible behavior in your code.
+
++++ A deeper look at Abstraction, Encapsulation, Inheritance, Polymorphism +++
+
+--> Abstraction --> Ignoring or hiding details that don't matter, allowing us to get an \
+overview perspective of the thing we're implementing, instead of messing with details that \
+don't really matter to our implementation
+--> For example: We use addEventListener on the DOM element without knowing detailed implementation
+
+--> Encapsulation --> Keeping properties and methods private inside the class, so they \
+are not accessible from outside the class. Some methods can be exposed as a public interface (API)
+
+--> Inheritance --> Making all properties and methods of a certain class available to a \
+child class, forming a hierarchical relationship between classes. This allows us to reuse \
+common logic and to model real-world relationships
+--> Inheritance --> Child Class extends Parent Class
+
+--> Polymorphism: A child class can overwrite a method it inherited from a parent class
+
++++ OOP in JavaScript +++
+
+--> Objects are linked to a prototype object
+--> Prototypal inheritance / Deligation --> The prototype contains methods (behavior) that \
+are accessable to all objects linked to that prototype
+--> Behavior is delegated to the linked prototype object
+
++++ 3 ways of implementing Prototypal Inheritance in JavaScript +++
+
+--> Constructor functions
++ Technique to create objects from a function
++ This is how built-in objects like Arrays, Maps or Sets are actually inplemented
+
+--> ES6 Classes
++ Modern alternative to constructor function syntax
++ "Syntatic sugar": behind the scenes, ES6 classes work exactly like constructor functions
++ ES6 classes do NOT behave like classes in "classical OOP"
+
+--> Object.create()
++ The easiest and most straightforward way of linking an object to a prototype object
+
++++ Constructor Functions and the new Operator +++
+
+--> Call Constructor Function with the new keyword
+1. new {} is created
+2. function is called, this = {}
+3. {} linked to prototype
+4. function automatically return {}
+
+--> check instance with isinstanceof --> True | False
+
+*** Point to note
+--> Function constructors are not really a feature of the JavaScript language. \
+Instead, they are simply a pattern that has been developed by other developers
+
++++ Prototypes +++
+
+console.log(arr.__proto__ === Array.prototype); // true
+console.log(Object.getPrototypeOf(arr) === Array.prototype); // true
+
+Person.prototype.calcAge = function() {
+  console.log(2037 - this.birthYear);
+};
+
+Person.prototype is not prototype of Person, but a prototype of Person's instances
+
+Person.prototype.isPrototypeOf(< instance >);
+
+instance.hasOwnProperty
+
++++ Prototypal Inheritance and The Prototype Chain +++
+
+Person.__proto__ --> Funtion constructor
+Person.prototype.__proto__ --> Object constructor
+
+--> Prototype Chain
+
+instance.__proto__
+Person.prototype
+Person.prototype.__proto__
+*** not Person.__proto__
+*** but
+Person.__proto__ --> Function.prototype
+Function.prototype.__proto__ --> Object.prototype
+
+*** Point to note
+--> Every funtion has prototype, every object has __proto__
+
++++ Prototypal Inheritance on Built-in Objects +++

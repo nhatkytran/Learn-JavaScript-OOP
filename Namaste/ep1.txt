@@ -12,3 +12,17 @@
 
 --> JavaScript --> Synchronous and Single-threaded language
 --> JavaScript executes one thing at a time and in a specific order
+
++++ How JS code is executed & Call Stack +++
+
+--> Creation Context
+--> Memory Creation Phase
++ Variable: undefined
++ Funtion: Store whole function
+--> Excecution phase
++ Function is invoked --> new Execution Context is created
+
+--> Handle Execution Contexts
+--> Call Stack
+
+--> Call Stack maintains the order of execution of Execution Contexts

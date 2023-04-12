@@ -112,3 +112,25 @@ Elements are a type of Node, but not all Nodes are Elements
 In summary, Nodes refer to any object that can appear in a DOM tree, while Elements \
 specifically refer to the type of Node representing an HTML or XML element
 An example of a Node in the DOM tree that is not an HTML or XML Element would be a Text node
+
++++ ES6 Classes +++
+
++++ Setters and Getters +++
+
++++ Static Methods +++
+
++++ Object.create +++
+
+--> How Constructor Function works behind the scene
+this = Object.create(function.prototype)
+
++++ Inheritance Between "Classes": Constructor Functions +++
+
++++ Inheritance Between "Classes": ES6 Classes +++
+
+--> Sometimes Inheritance can cause some bugs hard to debug because Inheritance \
+can change variable outside it's cope, for example, global variable
+--> Depend on the matter of need, we can use Functional Programming with pure \
+functions
+
++++ Inheritance Between "Classes": Object.create +++

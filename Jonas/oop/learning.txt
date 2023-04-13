@@ -134,3 +134,22 @@ can change variable outside it's cope, for example, global variable
 functions
 
 +++ Inheritance Between "Classes": Object.create +++
+
++++ Encapsulation: Private Class Fields and Methods +++
+
++++ Encapsulation: Private Class Fields and Methods +++
+
+--> Public fields
+--> Private fields
+--> Public methods
+--> Private methods
+
+--> Private methods --> Methods not stored in prototype
+--> Fix
+---
+static #function() {}
+---
+
+--> More implementations with "static"
+
++++ Chaining Methods +++

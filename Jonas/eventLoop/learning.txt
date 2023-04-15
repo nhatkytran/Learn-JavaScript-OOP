@@ -1,0 +1,45 @@
++++ Asynchronous JavaScript, AJAX and APIs +++
+
+--> Synchronous --> Blocking code
++ Code is executed line by line
++ Each line of code waits for previous line to finish
+
+--> Asynchronous --> None-blocking code
++ Code is executed after a task that runs in the "background" finishes
+
+---
+const image = document.querySelector('.dog');
+
+image.addEventListener('load', function() {
+  this.classList.add('fadeIn');
+});
+
+image.addEventListener('error', function() {
+  console.error('Something went wrong loading image!');
+  console.error(error);
+});
+
+image.src = 'dog.jpg';
+---
+
+--> AJAX --> Asynchronous JavaScript and XML --> Communicate with remote \
+web servers in an asynchronous way
+--> AJAX calls --> Request data from web servers dynamically
+
+--> API --> Application Programming Interface
++ Piece of software used by another piece of software --> allow applications \
+to talk to each other
++ Many types of APIs in Web development: DOM API, own class API, "Online" API,...
+--> "Online" APIs --> Application running on a server --> receives \
+requests for data, and sends data back as response
++ 3rd-party APIs
+
+--> AJAX --> XML data format
+--> JSON data format
+
++++ Asynchronous Behind The Scenes: The Event Loop +++
+
+--> Event Loop --> Imagine it as While (true) {} but more efficient
+--> Each iteration is Event Loop tick
+
+--> Call back Starvation --> Microtasks queue --> Callback queue

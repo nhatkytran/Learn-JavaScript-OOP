@@ -1,1 +1,19 @@
-https://www.youtube.com/watch?v=ii8xGK6mrPg
++++ DOM +++
+
+--> DOM --> API
+JS <--> DOM <--> HTML
+
+--> window (Browser Window) --> document (HTML Document)
+
+--> document --> basically a representation of your entire HTML document
+
++++ DOM Tree +++
+
+<p class="some-class">Content</p>
+
+p --> HTML tag
+class --> HTML attribute
+
+p --> Element node --> document.createElement
+class --> Attribute node --> document.createAttribute
+Content --> Text node --> document.createTextNode

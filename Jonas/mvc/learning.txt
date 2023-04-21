@@ -1,0 +1,20 @@
++++ Architecture +++
+
+--> SME --> Structure + Maintainability + Expandability
+Suck My Eel :))
+
+--> Structure --> The way organize code
+--> Maintainability --> Easy to change in the future
+--> Expandability --> Easy to add new features
+
++++ Components of Architecture +++
+
+--> BSHAP --> Business Logic + State + HTTP Library + Application Logic (Router) + Presentation Logic (UI Layer)
+Builds Strong Habits And Pratices
+
++++ The Model-View-Controller (MVC) Architecture +++
+
+[Web] <--> Model Controller View <--> [User]
+
+--> Model --> Business Logic + State + HTTP Library
+--> Controller --> Application Logic

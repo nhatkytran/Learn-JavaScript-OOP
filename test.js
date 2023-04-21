@@ -1,11 +1,5 @@
 'use strict';
 
-console.log('Start');
+console.log(123);
 
-const res = await fetch('https://jsonplaceholder.typicode.com/posts');
-
-console.log(res);
-
-const data = await res.json();
-
-console.log(data);
+co a = 8;

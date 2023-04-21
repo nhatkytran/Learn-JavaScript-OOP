@@ -13,6 +13,11 @@
 --> JavaScript --> Synchronous and Single-threaded language
 --> JavaScript executes one thing at a time and in a specific order
 
+--> Execution Context
++ Variables --> arguments + var, let, const + function
++ Scope chain
++ this keyword
+
 +++ How JS code is executed & Call Stack +++
 
 --> Creation Context
@@ -26,3 +31,35 @@
 --> Call Stack
 
 --> Call Stack maintains the order of execution of Execution Contexts
+
++++ Hoisting in JavaScript +++
+
+--> Hoisting --> get access to variables and functions before Initialization
+
+--> 2 Golden Rules
++ Variable declarations are scanned and are made undefined
++ Function declarations are scanned and are made available
+
+*** Imagine
+--> function scope if type="module" else block scope
+
++++ How functions work in JavaScript +++
+
+--> Each function create its own Executiona Context --> Call Stack
+--> Execution Context
++ Creation phase
++ Executin phase
+
++++ Shortest JS Program - window & this keyword +++
+
++++ undefined vs not defined in JS +++
+
+--> JS is not strictly typed language
+--> JS is loosely typed language --> aka weakly typed language
+
++++ Scope +++
+
+--> Scoping --> The concept --> How to access a variable in a program
+--> Scope --> Global scope, Function scope and Block scope
+--> Lexical scope --> Where you put your function can affect the way of accessing variables
+--> Scope chain --> How to access variable in nested function scopes
